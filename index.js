@@ -9,14 +9,16 @@ const router = new Router(app);
 app.addComponent({
   name: "employees",
   model: {
-    search: false,
+    searchActive: false,
     employees: [],
   },
   view(model) {
     return `
       <div class="employeesCont">
         ${model.employees
-          .map((employee, i) => templates.cardTemplate(employee, i))
+          .map((employee, i) =>
+            templates.cardTemplate(employee, i, model.searchActive)
+          )
           .join("")}
       </div>
     `;
@@ -34,7 +36,7 @@ app.addComponent({
           ? employee
           : null
       );
-      model.search = true;
+      model.searchActive = true;
       model.employees = result;
     });
     if (searchState === "") {
@@ -67,13 +69,41 @@ app.addComponent({
 });
 
 app.addComponent({
+  name: "employeeSearch",
+  model: {
+    employee: {},
+  },
+  view(model) {
+    return templates.singleCardTemplate(
+      model.employee,
+      router.params[1],
+      router.params[0].includes("search")
+    );
+  },
+  async controller(model) {
+    model.employee = employeeList[router.params[1]];
+    model.employee = employeeList[router.params[1]];
+
+    const deleteButton = document.querySelector("#deleteButton");
+
+    deleteButton.addEventListener("click", () => {
+      employeeList.splice(router.params[1], 1);
+      location.replace("#/employees");
+    });
+  },
+});
+
+app.addComponent({
   name: "editEmployee",
   model: {
     employee: {},
   },
   view(model) {
-    // console.log("edcxitt", console.log(model.employee));
-    return templates.editCardTemplate(model.employee, router.params[1]);
+    console.log("search");
+    return templates.editCardTemplate(
+      model.employee,
+      router.params[0].includes("search")
+    );
   },
   async controller(model) {
     const currentEmployee = employeeList[router.params[1]];
@@ -161,6 +191,10 @@ app.addComponent({
 router.addRoute("employees", "^#/employees$");
 router.addRoute("employee", "^#/employees/([0-9]+)$");
 router.addRoute("editEmployee", "^#/employees/edit/([0-9]+)$");
+//search alternative
+router.addRoute("employeeSearch", "^#/employees/search/([0-9]+)$");
+router.addRoute("editEmployee", "^#/employees/search/edit/([0-9]+)$");
+
 router.addRoute("addEmployee", "^#/employees/add$");
 
 app.showComponent("employees");
