@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>LFL Employee Directory</title>
   </head>
 
   <body>
-    <script src="dom.js"></script>
-    <script src="employee-list.js"></script>
-    <script src="app.js"></script>
+    <div id="mainCont">
+      <div id="sideBar">
+        <div class="navItemCont">
+          <div class="navSearch">
+            <label class="searchLabel">Search</label>
+            <input type="text" id="navInput" value="" />
+          </div>
+          <a class="navItem" href="/#/employees">View All</a>
+          <a class="navItem" href="/#/employees/add">Add</a>
+        </div>
+      </div>
+      <main id="app">
+        <div class="employeesCont"></div>
+      </main>
+    </div>
   </body>
+  <script type="module" src="index.js"></script>
 </html>

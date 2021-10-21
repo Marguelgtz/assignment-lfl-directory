@@ -1,0 +1,132 @@
+body,
+html {
+  width: 100%;
+  margin: 0%;
+  height: 100%;
+}
+
+#mainCont {
+  display: flex;
+  height: 100%;
+}
+
+#sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #0b3948;
+  width: 20%;
+}
+
+#app {
+  display: flex;
+
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+.navItemCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  height: 50%;
+}
+
+.navSearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.searchLabel {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+#navInput {
+  width: 85%;
+  height: 25px;
+}
+
+.navItem {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  padding: 10px 0 10px 0;
+  border: 1px solid black;
+  background-color: #ed6a5a;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.employeesCont {
+  height: 90%;
+
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+}
+
+.employeeCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 45%;
+  height: 150px;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 10px 13px 16px 0px black;
+}
+
+.employeeSingleCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 45%;
+  height: 150px;
+  /* margin-bottom: 20px; */
+  padding: 10px;
+  justify-content: space-around;
+  border-radius: 10px;
+  box-shadow: 10px 13px 16px 0px black;
+}
+
+.cardTitle {
+  font-size: 20px;
+  /* margin-left: 10px; */
+}
+
+.cardBottom {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.button {
+  border: 1px solid black;
+  width: 35%;
+  text-align: center;
+  padding: 3px 0 3px 0;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  background-color: #0b3948;
+  color: white;
+  border-radius: 5px;
+}
