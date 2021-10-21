@@ -52,6 +52,28 @@ const editCardTemplate = (employee, i) => `
           </div>
 `;
 
+const addCardTemplate = () => `
+  <div class="employeeSingleCard">
+            <label
+              >Name: <input type="text" id="nameInput" placeholder="name"
+            /></label>
+
+            <div class="cardTitle"></div>
+
+            <label
+              >Phone: <input type="text" id="phoneInput" placeholder="Phone Number"
+            /></label>
+            <label
+              >Ofiice: <input type="text" id="officeInput" placeholder="Office Number"
+            /></label>
+
+            <div class="cardBottom">
+              <a class="button" href="/#/employees">Cancel</a>
+              <div id="addButton" class="button">Add</div>
+            </div>
+          </div>
+`;
+
 app.addComponent({
   name: "employees",
   model: {
@@ -105,9 +127,22 @@ app.addComponent({
   },
 });
 
+app.addComponent({
+  name: "addEmployee",
+  model: {
+    employee: {},
+  },
+  view(model) {
+    console.log("fire view");
+    return addCardTemplate();
+  },
+  async controller(model) {},
+});
+
 //Routes
 router.addRoute("employees", "^#/employees$");
 router.addRoute("employee", "^#/employees/([0-9]+)$");
 router.addRoute("editEmployee", "^#/employees/edit/([0-9]+)$");
+router.addRoute("addEmployee", "^#/employees/add$");
 
 app.showComponent("employees");
