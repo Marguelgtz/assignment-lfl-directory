@@ -90,7 +90,20 @@ app.addComponent({
   },
   async controller(model) {
     const employees = employeeList;
-    model.employees = employees;
+    let searchState = "";
+    const searchInput = document.querySelector("#navInput");
+    searchInput.addEventListener("input", (e) => {
+      searchState = searchInput.value;
+
+      let result = employeeList.filter((employee) =>
+        employee.name.toLowerCase().includes(searchState.toLowerCase()) ||
+        employee.phoneNum.toLowerCase().includes(searchState.toLowerCase())
+          ? employee
+          : null
+      );
+      model.employees = result;
+    });
+    if (searchState === "") model.employees = employees;
   },
 });
 
