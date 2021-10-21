@@ -2,6 +2,7 @@ import App from "./lib/app.js";
 import Router from "./lib/router.js";
 import employeeList from "./employee-list.js";
 import templates from "./templates.js";
+
 const app = new App("#app");
 const router = new Router(app);
 
@@ -91,7 +92,7 @@ app.addComponent({
     );
     officeInput.addEventListener(
       "input",
-      (e) => (employeeObject.phoneNum = officeInput.value)
+      (e) => (employeeObject.officeInput = officeInput.value)
     );
 
     //buttons

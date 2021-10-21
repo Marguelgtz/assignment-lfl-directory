@@ -44,6 +44,27 @@ const editCardTemplate = (employee, i) => `
             </div>
           </div>
 `;
+const editFromSearchCardTemplate = (employee, i) => `
+  <div class="employeeSingleCard">
+            <label
+              >Name: <input disabled type="text" id="nameInput" placeholder="${employee.name}"
+            /></label>
+
+            <div class="cardTitle"></div>
+
+            <label
+              >Phone: <input id="phoneInput" type="text" placeholder="${employee.phoneNum}"
+            /></label>
+            <label
+              >Ofiice: <input type="text"  id="officeInput" placeholder="${employee.officeNum}"
+            /></label>
+
+            <div class="cardBottom">
+              <a class="button" href="/#/employees">Cancel</a>
+              <div class="button" id="editButton">Submit</div>
+            </div>
+          </div>
+`;
 
 const addCardTemplate = () => `
   <div class="employeeSingleCard">
