@@ -1,78 +1,9 @@
 import App from "./lib/app.js";
 import Router from "./lib/router.js";
 import employeeList from "./employee-list.js";
-
+import templates from "./templates.js";
 const app = new App("#app");
 const router = new Router(app);
-
-//templates
-const cardTemplate = (employee, i) => `
-<a class="employeeCard" href="#/employees/${i}">
-            <div class="cardTitle">${employee.name}</div>
-
-            <div class="cardTop">
-              <p>Phone: ${employee.phoneNum}</p>    <p>Office: ${employee.officeNum}</p>
-            </div>
-          </a>
-  `;
-
-const singleCardTemplate = (employee, i) => `
-<div class="employeeSingleCard">
-            <div class="cardTitle">${employee.name}</div>
-
-            <div class="cardTop">
-              <p>Phone: ${employee.phoneNum}</p>    <p>Office: ${employee.officeNum}</p>
-            </div>
-            <div class="cardBottom">
-              <a class="button" href="#/employees/edit/${i}">Edit</a>
-              <div class="button" id="deleteButton">Delete</div>
-            </div>
-          </div>
-  `;
-
-const editCardTemplate = (employee, i) => `
-  <div class="employeeSingleCard">
-            <label
-              >Name: <input type="text" id="nameInput" placeholder="${employee.name}"
-            /></label>
-
-            <div class="cardTitle"></div>
-
-            <label
-              >Phone: <input id="phoneInput" type="text" placeholder="${employee.phoneNum}"
-            /></label>
-            <label
-              >Ofiice: <input type="text"  id="officeInput" placeholder="${employee.officeNum}"
-            /></label>
-
-            <div class="cardBottom">
-              <a class="button" href="/#/employees">Cancel</a>
-              <div class="button" id="editButton">Submit</div>
-            </div>
-          </div>
-`;
-
-const addCardTemplate = () => `
-  <div class="employeeSingleCard">
-            <label
-              >Name: <input type="text" id="nameInput" placeholder="name"
-            /></label>
-
-            <div class="cardTitle"></div>
-
-            <label
-              >Phone: <input type="text" id="phoneInput" placeholder="Phone Number"
-            /></label>
-            <label
-              >Ofiice: <input type="text" id="officeInput" placeholder="Office Number"
-            /></label>
-
-            <div class="cardBottom">
-              <a class="button" href="/#/employees">Cancel</a>
-              <div id="addButton" class="button">Add</div>
-            </div>
-          </div>
-`;
 
 app.addComponent({
   name: "employees",
@@ -83,7 +14,7 @@ app.addComponent({
     return `
       <div class="employeesCont">
         ${model.employees
-          .map((employee, i) => cardTemplate(employee, i))
+          .map((employee, i) => templates.cardTemplate(employee, i))
           .join("")}
       </div>
     `;
@@ -114,7 +45,7 @@ app.addComponent({
   },
   view(model) {
     console.log("fire view");
-    return singleCardTemplate(model.employee, router.params[1]);
+    return templates.singleCardTemplate(model.employee, router.params[1]);
   },
   async controller(model) {
     model.employee = employeeList[router.params[1]];
@@ -136,7 +67,7 @@ app.addComponent({
   },
   view(model) {
     // console.log("edcxitt", console.log(model.employee));
-    return editCardTemplate(model.employee, router.params[1]);
+    return templates.editCardTemplate(model.employee, router.params[1]);
   },
   async controller(model) {
     const currentEmployee = employeeList[router.params[1]];
@@ -184,7 +115,7 @@ app.addComponent({
   },
   view(model) {
     console.log("fire view");
-    return addCardTemplate();
+    return templates.addCardTemplate();
   },
   async controller(model) {
     const nameInput = document.querySelector("#nameInput");
