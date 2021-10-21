@@ -1,1 +1,57 @@
 /* Your work here */
+body,
+html {
+  width: 100%;
+  margin: 0%;
+  height: 100%;
+}
+
+#mainCont {
+  display: flex;
+  height: 100%;
+}
+
+#sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid red;
+  width: 20%;
+}
+
+#app {
+  display: flex;
+  border: 2px solid orange;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+.navItemCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 1px solid black;
+  height: 50%;
+}
+
+.navSearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  padding: 10px 0 10px 0;
+  border: 1px solid black;
+  background-color: rosybrown;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
