@@ -118,8 +118,14 @@ app.addComponent({
   },
   async controller(model) {
     model.employee = employeeList[router.params[1]];
+    model.employee = employeeList[router.params[1]];
 
-    //functionality
+    const deleteButton = document.querySelector("#deleteButton");
+
+    deleteButton.addEventListener("click", () => {
+      employeeList.splice(router.params[1], 1);
+      location.replace("#/employees");
+    });
   },
 });
 
