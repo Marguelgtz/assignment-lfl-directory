@@ -9,6 +9,7 @@ const router = new Router(app);
 app.addComponent({
   name: "employees",
   model: {
+    search: false,
     employees: [],
   },
   view(model) {
@@ -33,9 +34,13 @@ app.addComponent({
           ? employee
           : null
       );
+      model.search = true;
       model.employees = result;
     });
-    if (searchState === "") model.employees = employees;
+    if (searchState === "") {
+      model.search = true;
+      model.employees = employees;
+    }
   },
 });
 
