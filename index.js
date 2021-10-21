@@ -30,6 +30,28 @@ const singleCardTemplate = (employee, i) => `
           </div>
   `;
 
+const editCardTemplate = (employee, i) => `
+  <div class="employeeSingleCard">
+            <label
+              >Name: <input type="text" id="nameInput" placeholder="${employee.name}"
+            /></label>
+
+            <div class="cardTitle"></div>
+
+            <label
+              >Phone: <input id="phoneInput" type="text" placeholder="${employee.phoneNum}"
+            /></label>
+            <label
+              >Ofiice: <input type="text"  id="officeInput" placeholder="${employee.officeNum}"
+            /></label>
+
+            <div class="cardBottom">
+              <a class="button" href="/#/employees">Cancel</a>
+              <div class="button" id="editButton">Submit</div>
+            </div>
+          </div>
+`;
+
 app.addComponent({
   name: "employees",
   model: {
@@ -66,8 +88,26 @@ app.addComponent({
   },
 });
 
+app.addComponent({
+  name: "editEmployee",
+  model: {
+    employee: {},
+  },
+  view(model) {
+    // console.log("edcxitt", console.log(model.employee));
+    return editCardTemplate(model.employee, router.params[1]);
+  },
+  async controller(model) {
+    const currentEmployee = employeeList[router.params[1]];
+    model.employee = currentEmployee;
+
+    //funcitonality
+  },
+});
+
 //Routes
 router.addRoute("employees", "^#/employees$");
 router.addRoute("employee", "^#/employees/([0-9]+)$");
+router.addRoute("editEmployee", "^#/employees/edit/([0-9]+)$");
 
 app.showComponent("employees");
