@@ -2,6 +2,7 @@ import App from "./lib/app.js";
 
 const app = new App("#app");
 
+console.l;
 const cardTemplate = (employee, i) => `
 <a class="employeeCard" href="#/employees/${i}">
             <div class="cardTitle">${employee.name}</div>
