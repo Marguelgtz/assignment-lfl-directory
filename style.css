@@ -55,3 +55,26 @@ html {
   text-decoration: none;
   color: black;
 }
+
+.employeesCont {
+  height: 87.5%;
+  border: 1px solid blue;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+}
+
+.employeeCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 45%;
+  height: 150px;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  justify-content: space-around;
+}
