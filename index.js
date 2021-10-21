@@ -2,19 +2,23 @@ import App from "./lib/app.js";
 import Router from "./lib/router.js";
 import employeeList from "./employee-list.js";
 import templates from "./templates.js";
+
 const app = new App("#app");
 const router = new Router(app);
 
 app.addComponent({
   name: "employees",
   model: {
+    searchActive: false,
     employees: [],
   },
   view(model) {
     return `
       <div class="employeesCont">
         ${model.employees
-          .map((employee, i) => templates.cardTemplate(employee, i))
+          .map((employee, i) =>
+            templates.cardTemplate(employee, i, model.searchActive)
+          )
           .join("")}
       </div>
     `;
@@ -32,9 +36,13 @@ app.addComponent({
           ? employee
           : null
       );
+      model.searchActive = true;
       model.employees = result;
     });
-    if (searchState === "") model.employees = employees;
+    if (searchState === "") {
+      model.search = true;
+      model.employees = employees;
+    }
   },
 });
 
@@ -44,8 +52,32 @@ app.addComponent({
     employee: {},
   },
   view(model) {
-    console.log("fire view");
     return templates.singleCardTemplate(model.employee, router.params[1]);
+  },
+  async controller(model) {
+    model.employee = employeeList[router.params[1]];
+    model.employee = employeeList[router.params[1]];
+
+    const deleteButton = document.querySelector("#deleteButton");
+
+    deleteButton.addEventListener("click", () => {
+      employeeList.splice(router.params[1], 1);
+      location.replace("#/employees");
+    });
+  },
+});
+
+app.addComponent({
+  name: "employeeSearch",
+  model: {
+    employee: {},
+  },
+  view(model) {
+    return templates.singleCardTemplate(
+      model.employee,
+      router.params[1],
+      router.params[0].includes("search")
+    );
   },
   async controller(model) {
     model.employee = employeeList[router.params[1]];
@@ -66,8 +98,10 @@ app.addComponent({
     employee: {},
   },
   view(model) {
-    // console.log("edcxitt", console.log(model.employee));
-    return templates.editCardTemplate(model.employee, router.params[1]);
+    return templates.editCardTemplate(
+      model.employee,
+      router.params[0].includes("search")
+    );
   },
   async controller(model) {
     const currentEmployee = employeeList[router.params[1]];
@@ -91,17 +125,13 @@ app.addComponent({
     );
     officeInput.addEventListener(
       "input",
-      (e) => (employeeObject.phoneNum = officeInput.value)
+      (e) => (employeeObject.officeInput = officeInput.value)
     );
 
     //buttons
     const editButton = document.querySelector("#editButton");
 
     editButton.addEventListener("click", () => {
-      console.log(employeeObject);
-      // const newArr = employeeList.map((employee) =>
-      //   employeeList[router.params[1]] === employee ? employeeObject : employee
-      // );
       employeeList.splice(router.params[1], 1, employeeObject);
       location.replace("#/employees");
     });
@@ -114,7 +144,6 @@ app.addComponent({
     employee: {},
   },
   view(model) {
-    console.log("fire view");
     return templates.addCardTemplate();
   },
   async controller(model) {
@@ -145,7 +174,6 @@ app.addComponent({
 
     addButton.addEventListener("click", () => {
       employeeList.push(employeeObject);
-      console.log(employeeList);
       location.replace("#/employees");
     });
   },
@@ -155,6 +183,10 @@ app.addComponent({
 router.addRoute("employees", "^#/employees$");
 router.addRoute("employee", "^#/employees/([0-9]+)$");
 router.addRoute("editEmployee", "^#/employees/edit/([0-9]+)$");
+//search alternative
+router.addRoute("employeeSearch", "^#/employees/search/([0-9]+)$");
+router.addRoute("editEmployee", "^#/employees/search/edit/([0-9]+)$");
+
 router.addRoute("addEmployee", "^#/employees/add$");
 
 app.showComponent("employees");

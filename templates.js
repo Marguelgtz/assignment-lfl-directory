@@ -1,6 +1,8 @@
 //templates
-const cardTemplate = (employee, i) => `
-<a class="employeeCard" href="#/employees/${i}">
+const cardTemplate = (employee, i, search) => {
+  const href = search ? `#/employees/search/${i}` : `#/employees/${i}`;
+  return `
+<a class="employeeCard" href=${href}>
             <div class="cardTitle">${employee.name}</div>
 
             <div class="cardTop">
@@ -8,8 +10,14 @@ const cardTemplate = (employee, i) => `
             </div>
           </a>
   `;
+};
 
-const singleCardTemplate = (employee, i) => `
+const singleCardTemplate = (employee, i, search) => {
+  const href = search
+    ? `#/employees/search/edit/${i}`
+    : `#/employees/edit/${i}`;
+
+  return `
 <div class="employeeSingleCard">
             <div class="cardTitle">${employee.name}</div>
 
@@ -17,25 +25,33 @@ const singleCardTemplate = (employee, i) => `
               <p>Phone: ${employee.phoneNum}</p>    <p>Office: ${employee.officeNum}</p>
             </div>
             <div class="cardBottom">
-              <a class="button" href="#/employees/edit/${i}">Edit</a>
+              <a class="button" href=${href}>Edit</a>
               <div class="button" id="deleteButton">Delete</div>
             </div>
           </div>
   `;
+};
 
-const editCardTemplate = (employee, i) => `
+const editCardTemplate = (employee, search) => {
+  return `
   <div class="employeeSingleCard">
             <label
-              >Name: <input type="text" id="nameInput" placeholder="${employee.name}"
+              >Name: <input ${
+                search ? "disabled" : ""
+              } type="text" id="nameInput" placeholder="${employee.name}"
             /></label>
 
             <div class="cardTitle"></div>
 
             <label
-              >Phone: <input id="phoneInput" type="text" placeholder="${employee.phoneNum}"
+              >Phone: <input id="phoneInput" type="text" placeholder="${
+                employee.phoneNum
+              }"
             /></label>
             <label
-              >Ofiice: <input type="text"  id="officeInput" placeholder="${employee.officeNum}"
+              >Ofiice: <input type="text"  id="officeInput" placeholder="${
+                employee.officeNum
+              }"
             /></label>
 
             <div class="cardBottom">
@@ -44,6 +60,7 @@ const editCardTemplate = (employee, i) => `
             </div>
           </div>
 `;
+};
 
 const addCardTemplate = () => `
   <div class="employeeSingleCard">
