@@ -141,8 +141,39 @@ app.addComponent({
   async controller(model) {
     const currentEmployee = employeeList[router.params[1]];
     model.employee = currentEmployee;
+    const nameInput = document.querySelector("#nameInput");
+    const phoneInput = document.querySelector("#phoneInput");
+    const officeInput = document.querySelector("#officeInput");
 
-    //funcitonality
+    let employeeObject = {
+      name: currentEmployee.name,
+      phoneNum: currentEmployee.phoneNum,
+      officeNum: currentEmployee.officeNum,
+    };
+
+    nameInput.addEventListener("input", (e) => {
+      employeeObject.name = nameInput.value;
+    });
+    phoneInput.addEventListener(
+      "input",
+      (e) => (employeeObject.phoneNum = phoneInput.value)
+    );
+    officeInput.addEventListener(
+      "input",
+      (e) => (employeeObject.phoneNum = officeInput.value)
+    );
+
+    //buttons
+    const editButton = document.querySelector("#editButton");
+
+    editButton.addEventListener("click", () => {
+      console.log(employeeObject);
+      // const newArr = employeeList.map((employee) =>
+      //   employeeList[router.params[1]] === employee ? employeeObject : employee
+      // );
+      employeeList.splice(router.params[1], 1, employeeObject);
+      location.replace("#/employees");
+    });
   },
 });
 
