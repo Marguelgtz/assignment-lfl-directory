@@ -5,6 +5,7 @@ import employeeList from "./employee-list.js";
 const app = new App("#app");
 const router = new Router(app);
 
+//templates
 const cardTemplate = (employee, i) => `
 <a class="employeeCard" href="#/employees/${i}">
             <div class="cardTitle">${employee.name}</div>
@@ -13,6 +14,20 @@ const cardTemplate = (employee, i) => `
               <p>Phone: ${employee.phoneNum}</p>    <p>Office: ${employee.officeNum}</p>
             </div>
           </a>
+  `;
+
+const singleCardTemplate = (employee, i) => `
+<div class="employeeSingleCard">
+            <div class="cardTitle">${employee.name}</div>
+
+            <div class="cardTop">
+              <p>Phone: ${employee.phoneNum}</p>    <p>Office: ${employee.officeNum}</p>
+            </div>
+            <div class="cardBottom">
+              <a class="button" href="#/employees/edit/${i}">Edit</a>
+              <div class="button" id="deleteButton">Delete</div>
+            </div>
+          </div>
   `;
 
 app.addComponent({
