@@ -186,7 +186,38 @@ app.addComponent({
     console.log("fire view");
     return addCardTemplate();
   },
-  async controller(model) {},
+  async controller(model) {
+    const nameInput = document.querySelector("#nameInput");
+    const phoneInput = document.querySelector("#phoneInput");
+    const officeInput = document.querySelector("#officeInput");
+
+    let employeeObject = {
+      name: "",
+      phoneNum: "",
+      officeNum: "",
+    };
+
+    nameInput.addEventListener("input", (e) => {
+      employeeObject.name = nameInput.value;
+    });
+    phoneInput.addEventListener(
+      "input",
+      (e) => (employeeObject.phoneNum = phoneInput.value)
+    );
+    officeInput.addEventListener(
+      "input",
+      (e) => (employeeObject.phoneNum = officeInput.value)
+    );
+
+    //buttons
+    const addButton = document.querySelector("#addButton");
+
+    addButton.addEventListener("click", () => {
+      employeeList.push(employeeObject);
+      console.log(employeeList);
+      location.replace("#/employees");
+    });
+  },
 });
 
 //Routes
