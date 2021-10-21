@@ -40,3 +40,20 @@ Feel free to reach out to with any questions or for clarification.
 - MVC JS architecture
 
 ## Dev notes
+
+### MVC Arquitecture
+`**app.js**` with the App class we can create object components and which will be handled through the MVC Architecture
+`**router.js**` is looking at window.location hash waithing for a change or a Dom reload to check route and if it matches with component execute the view function of the component
+
+### Functionality
+
+**Search Bar :**  When using search input, the employees will be filtered to match it.\
+**Employee Card :** Click for a closer look and more options.\
+**Add Employee :**  You can add Employees .\
+**Delete Employee :**  You can delete Employees .\
+**Edit Employee :**  You can edit Employees .\
+> **Search case :** if editing an employee resulting from a search the name will not be modificable.
+
+>#Project was started out of repo at first to grasp the workflow of creating an MVC architecture
+
+
