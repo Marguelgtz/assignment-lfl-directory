@@ -33,7 +33,6 @@ const singleCardTemplate = (employee, i, search) => {
 };
 
 const editCardTemplate = (employee, search) => {
-  console.log("edit search", search);
   return `
   <div class="employeeSingleCard">
             <label

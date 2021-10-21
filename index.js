@@ -52,7 +52,6 @@ app.addComponent({
     employee: {},
   },
   view(model) {
-    console.log("fire view");
     return templates.singleCardTemplate(model.employee, router.params[1]);
   },
   async controller(model) {
@@ -99,7 +98,6 @@ app.addComponent({
     employee: {},
   },
   view(model) {
-    console.log("search");
     return templates.editCardTemplate(
       model.employee,
       router.params[0].includes("search")
@@ -134,10 +132,6 @@ app.addComponent({
     const editButton = document.querySelector("#editButton");
 
     editButton.addEventListener("click", () => {
-      console.log(employeeObject);
-      // const newArr = employeeList.map((employee) =>
-      //   employeeList[router.params[1]] === employee ? employeeObject : employee
-      // );
       employeeList.splice(router.params[1], 1, employeeObject);
       location.replace("#/employees");
     });
@@ -150,7 +144,6 @@ app.addComponent({
     employee: {},
   },
   view(model) {
-    console.log("fire view");
     return templates.addCardTemplate();
   },
   async controller(model) {
@@ -181,7 +174,6 @@ app.addComponent({
 
     addButton.addEventListener("click", () => {
       employeeList.push(employeeObject);
-      console.log(employeeList);
       location.replace("#/employees");
     });
   },
