@@ -40,6 +40,7 @@ Feel free to reach out to with any questions or for clarification.
 - MVC JS architecture
 
 ## Dev notes
+![image](https://user-images.githubusercontent.com/17017482/138330620-e683f289-e78f-4fe0-bf95-aa7dc8246754.png)
 
 ### MVC Arquitecture
 `**app.js**` with the App class we can create object components and which will be handled through the MVC Architecture.\
